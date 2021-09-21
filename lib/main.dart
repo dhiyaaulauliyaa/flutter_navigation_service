@@ -32,7 +32,13 @@ class FirstPage extends StatelessWidget {
         child: Text('First Page'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (ctx) => const SecondPage(),
+            ),
+          );
+        },
         child: const Icon(Icons.arrow_forward),
       ),
     );
@@ -52,7 +58,13 @@ class SecondPage extends StatelessWidget {
         child: Text('Second Page'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (ctx) => const FirstPage(),
+            ),
+          );
+        },
         child: const Icon(Icons.arrow_back),
       ),
     );
