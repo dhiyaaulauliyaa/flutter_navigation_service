@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'base/base_stateless.dart';
+import 'services/navigation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,19 +13,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      navigatorKey: NavigationService.instance.navigatorKey,
       theme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: const FirstPage(),
+      home: FirstPage(),
     );
   }
 }
 
-class FirstPage extends StatelessWidget {
-  const FirstPage({Key? key}) : super(key: key);
+class FirstPage extends BaseStateless {
+  FirstPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget body() {
     return Scaffold(
       appBar: AppBar(
         title: const Text('First Page'),
@@ -33,11 +36,7 @@ class FirstPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (ctx) => const SecondPage(),
-            ),
-          );
+          nav.push(SecondPage());
         },
         child: const Icon(Icons.arrow_forward),
       ),
@@ -45,11 +44,11 @@ class FirstPage extends StatelessWidget {
   }
 }
 
-class SecondPage extends StatelessWidget {
-  const SecondPage({Key? key}) : super(key: key);
+class SecondPage extends BaseStateless {
+  SecondPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget body() {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Second Page'),
@@ -59,13 +58,9 @@ class SecondPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (ctx) => const FirstPage(),
-            ),
-          );
+          nav.push(FirstPage());
         },
-        child: const Icon(Icons.arrow_back),
+        child: const Icon(Icons.arrow_forward),
       ),
     );
   }
