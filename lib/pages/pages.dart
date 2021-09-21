@@ -16,7 +16,9 @@ class FirstPage extends BaseStateless {
       floatingActionButton: FloatingActionButton(
         heroTag: 'p1',
         onPressed: () {
-          nav.push(SecondPage());
+          nav.push(SecondPage(
+            title: 'Hi Second Page, Hello From First Page',
+          ));
         },
         child: const Icon(Icons.arrow_forward),
       ),
@@ -25,16 +27,21 @@ class FirstPage extends BaseStateless {
 }
 
 class SecondPage extends BaseStateless {
-  SecondPage({Key? key}) : super(key: key);
+  SecondPage({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  final String title;
 
   @override
   Widget body() {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Page'),
+        title: Text('Second Page'),
       ),
-      body: const Center(
-        child: Text('Second Page'),
+      body: Center(
+        child: Text(title),
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
